@@ -1,3 +1,3 @@
-export default function HomeLoading(){
-    return <p>Carregando...</p>
+export default function HomeLoading() {
+  return <p>Carregando...</p>
 }
