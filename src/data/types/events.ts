@@ -7,5 +7,8 @@ export interface Events {
   occupation: string
   statusEvent: boolean
   idFile: number
+  dateEvent: string
+  timeEvent: string
+  qtdParcelamento: number
   pathName: string
 }

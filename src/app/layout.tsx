@@ -5,7 +5,10 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Events App',
+  title: {
+    template: '%s | ibe',
+    default: 'Events Ibe',
+  },
 }
 
 export default function RootLayout({
