@@ -1,0 +1,70 @@
+import { Events } from '@/data/types/events'
+import Image from 'next/image'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
+interface SearchProps {
+  searchParams: {
+    q: string
+  }
+}
+
+async function searchEvents(query: string): Promise<Events[]> {
+  // `http://localhost:3000/api/events/search?q=${query}`,
+  const response = await fetch(`http://localhost/api/eventsTitle/${query}`, {
+    next: {
+      revalidate: 60,
+    },
+  })
+  const reqJson = await response.json()
+
+  return [reqJson.data]
+}
+
+export default async function Search({ searchParams }: SearchProps) {
+  const { q: query } = searchParams
+
+  if (!query) redirect('/')
+
+  const events = await searchEvents(query)
+
+  return (
+    <div className="flex flex-col gap-4">
+      <p className="font-sm">
+        Resultado para: <span className="font-semibold">{query}</span>
+      </p>
+
+      <div className="flex flex-row flex-wrap gap-6">
+        {events &&
+          events.length > 0 &&
+          events.map((events) => (
+            <Link
+              href={`/events/`}
+              className="group relative rounded-lg w-[400px] h-[400px] bg-zinc-800 overflow-hidden flex justify-center items-end"
+              key={events.id}
+            >
+              <Image
+                src="/moletomGreen.png"
+                className="group-hover:scale-105 transition-transform duration-500"
+                width={480}
+                height={480}
+                quality={100}
+                alt=""
+              />
+              <div className="absolute bottom-10 right-10 h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
+                <span className="text-sm truncate">{events.title}</span>
+                <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
+                  {events.price.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                  })}
+                </span>
+              </div>
+            </Link>
+          ))}
+      </div>
+    </div>
+  )
+}

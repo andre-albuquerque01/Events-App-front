@@ -51,7 +51,7 @@ export default async function Home() {
         return (
           <Link
             href={`/events/${event.id}`}
-            className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-800 overflow-hidden flex justify-center"
+            className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-800 overflow-hidden flex justify-center "
             key={event.id}
           >
             <Image

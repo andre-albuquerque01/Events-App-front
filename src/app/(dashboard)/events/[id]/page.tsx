@@ -1,3 +1,4 @@
+import AddToCartButton from '@/components/add-to-cart-button'
 import { Events } from '@/data/types/events'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -80,12 +81,7 @@ export default async function EventList({ params }: EventsProps) {
           </span>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white"
-        >
-          Fazer reserva
-        </button>
+        <AddToCartButton eventId={data.id} />
       </div>
     </div>
   )
