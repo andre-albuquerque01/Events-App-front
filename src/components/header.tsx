@@ -18,7 +18,10 @@ export default function header() {
         <div className="flex items-center gap-4">
           <CartWidget />
           <div className="w-px h-4 bg-zinc-500"></div>
-          <Link href="/" className="flex items-center gap-2 hover:underline">
+          <Link
+            href="/configuration"
+            className="flex items-center gap-2 hover:underline"
+          >
             <span className="text-sm">Conta</span>
             <CircleUser className="h-6 w-6" />
           </Link>
