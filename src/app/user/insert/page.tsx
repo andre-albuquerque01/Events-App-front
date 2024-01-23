@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 export default function InsertUser() {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-col  justify-center items-center h-screen">
       <form className="bg-zinc-700 flex flex-col items-center justify-center w-[420px] h-[680px] rounded-xl max-sm:w-[360px] relative">
         <Link
           href="/"
@@ -17,7 +17,7 @@ export default function InsertUser() {
         >
           <ArrowLeft /> Voltar
         </Link>
-        <p className="text-xl mb-5 mt-11">Cadastrado do usuário</p>
+        <p className="text-xl mb-7 mt-5">Cadastrado do usuário</p>
         <div className="">
           <label htmlFor="nome">Nome</label>
           <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">

@@ -34,39 +34,37 @@ export default function LogIn() {
           </Link>
           <p className="text-xl mb-7 mt-5">Log In</p>
           <div className="">
-            <label htmlFor="">E-mail</label>
+            <label htmlFor="password">Nova senha</label>
             <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">
               <CircleUserRound className="w-5 h-5 text-zinc-500" />
-              <input
-                type="email"
-                name="email"
-                className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
-                required
-              />
-            </div>
-          </div>
-          <div className="mt-5">
-            <label htmlFor="password">Senha</label>
-            <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">
-              <LockKeyhole className="w-5 h-5 text-zinc-500" />
               <input
                 type="password"
                 name="password"
                 id="password"
                 className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
+                placeholder="Nova senha"
                 required
               />
             </div>
           </div>
-          <Link href="/user/recover" className="text-sm">
-            Esqueceu senha?
-          </Link>
+          <div className="mt-5">
+            <label htmlFor="password_confirmation">Confirmação da senha</label>
+            <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">
+              <LockKeyhole className="w-5 h-5 text-zinc-500" />
+              <input
+                type="password"
+                name="password_confirmation"
+                id="password_confirmation"
+                className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
+                placeholder="Repetir senha"
+                required
+              />
+            </div>
+          </div>
           <button className="mt-8 flex h-12 w-[320px] items-center justify-center rounded-full bg-emerald-600 font-semibold text-white">
             Entrar
           </button>
         </form>
-        <div className="h-0.5 w-72 bg-zinc-600 mt-10"></div>
-        <Link href="/user/insert">Não tem conta?</Link>
       </div>
     </div>
   )
