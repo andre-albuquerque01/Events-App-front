@@ -5,22 +5,25 @@ export async function POST(request: Request) {
     const requestBody = await request.json()
 
     await fetch('http://localhost/sanctum/csrf-cookie')
-    const cookiesStore = cookies()
-    const token = cookiesStore.get('XSRF-TOKEN')
 
-    const response = await fetch('http://localhost/api/auth', {
-      method: 'POST',
+    const cookiesStore = cookies()
+    const token = cookiesStore.get('token')
+    const xsrf = cookiesStore.get('XSRF-TOKEN')
+
+    const response = await fetch(`http://localhost/api/user/${request.id}`, {
+      method: 'PUT',
       Accept: 'application/json',
       headers: {
         'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': token?.value,
+        'X-XSRF-TOKEN': xsrf?.value,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(requestBody),
     })
 
     const data = await response.json()
-    cookiesStore.set('token', data.data.token)
-    cookiesStore.set('id', data.data.idUser)
+    console.log(data.error)
+
     return Response.json({ data })
   } catch (error) {
     console.log('Erro ao analisar JSON:', error)

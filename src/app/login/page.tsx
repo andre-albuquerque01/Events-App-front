@@ -11,6 +11,8 @@ async function postLogin(body: object) {
     },
     body: JSON.stringify(body),
   })
+  if (response.ok) console.log('sucess')
+  else console.error('Erro')
 }
 
 export default function LogIn() {

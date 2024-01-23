@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const cookiesStore = cookies()
     const token = cookiesStore.get('XSRF-TOKEN')
 
-    const response = await fetch('http://localhost/api/auth', {
+    const response = await fetch('http://localhost/api/user', {
       method: 'POST',
       Accept: 'application/json',
       headers: {
@@ -19,8 +19,8 @@ export async function POST(request: Request) {
     })
 
     const data = await response.json()
-    cookiesStore.set('token', data.data.token)
-    cookiesStore.set('id', data.data.idUser)
+    console.log(data.error)
+
     return Response.json({ data })
   } catch (error) {
     console.log('Erro ao analisar JSON:', error)
