@@ -1,5 +1,5 @@
 export interface Events {
-  id: number
+  idEvents: number
   title: string
   description: string
   price: number

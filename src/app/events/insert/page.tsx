@@ -1,3 +1,4 @@
+'use client'
 import {
   ArrowLeft,
   CalendarDays,
@@ -145,13 +146,13 @@ export default function insertEvents() {
           </div>
         </div>
         <div className="mt-5">
-          <label htmlFor="idFile">Imagem do evento</label>
+          <label htmlFor="pathName">Imagem do evento</label>
           <div className="flex w-[320px] items-center gap-3 rounded-xl bg-zinc-800 px-5 py-3 ring-zinc-700">
             <File className="w-5 h-5 text-zinc-500" />
             <input
               type="file"
-              name="idFile"
-              id="idFile"
+              name="pathName"
+              id="pathName"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="timeStart"
               required

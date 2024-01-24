@@ -81,7 +81,7 @@ export default async function EventList({ params }: EventsProps) {
           </span>
         </div>
 
-        <AddToCartButton eventId={data.id} />
+        <AddToCartButton eventId={data.idEvents} />
       </div>
     </div>
   )
