@@ -6,15 +6,39 @@ import {
   File,
   Hash,
   Layers,
+  Receipt,
   SquareUserIcon,
   Timer,
 } from 'lucide-react'
 import Link from 'next/link'
+import { FormEvent } from 'react'
 
-export default function InsertEvents() {
+async function postEvents(body: object) {
+  const response = await fetch('http://localhost:3000/api/events/insert', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+  if (response.ok) console.log('sucess')
+  else console.error('Erro')
+}
+
+export default function insertEvents() {
+  async function handlePost(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData)
+    await postEvents(data)
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
-      <form className="bg-zinc-700 flex flex-col items-center justify-center w-[420px] min-h-[950px] rounded-xl max-sm:w-[360px] relative">
+      <form
+        onSubmit={handlePost}
+        className="bg-zinc-700 flex flex-col items-center justify-center w-[420px] min-h-[950px] rounded-xl max-sm:w-[360px] relative"
+      >
         <Link
           href="/configuration"
           className="absolute top-0 left-0 mt-4 ml-4 flex flex-row justify-start items-start"
@@ -28,6 +52,7 @@ export default function InsertEvents() {
             <CircleUserRound className="w-5 h-5 text-zinc-500" />
             <input
               type="text"
+              name="title"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Título"
               required
@@ -41,6 +66,22 @@ export default function InsertEvents() {
             <input
               type="number"
               step="0.01"
+              name="price"
+              className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
+              placeholder="Preço"
+              required
+            />
+          </div>
+        </div>
+        <div className="mt-5">
+          <label htmlFor="qtdParcelamento">
+            Quantidade de parcelas, sem juros
+          </label>
+          <div className="flex w-[320px] items-center gap-3 rounded-xl bg-zinc-800 px-5 py-3 ring-zinc-700">
+            <Receipt className="w-5 h-5 text-zinc-500" />
+            <input
+              type="number"
+              name="qtdParcelamento"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Preço"
               required
@@ -62,12 +103,11 @@ export default function InsertEvents() {
           </div>
         </div>
         <div className="mt-5">
-          <label htmlFor="occupation">Departamento</label>
+          <label htmlFor="occupation">Quantidade de pessoas</label>
           <div className="flex w-[320px] items-center gap-3 rounded-xl bg-zinc-800 px-5 py-3 ring-zinc-700">
             <Hash className="w-5 h-5 text-zinc-500" />
             <input
               type="number"
-              step="0.01"
               name="occupation"
               id="occupation"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
@@ -91,13 +131,13 @@ export default function InsertEvents() {
           </div>
         </div>
         <div className="mt-5">
-          <label htmlFor="horas">Horario de inicio</label>
+          <label htmlFor="timeEvent">Horario de inicio</label>
           <div className="flex w-[320px] items-center gap-3 rounded-xl bg-zinc-800 px-5 py-3 ring-zinc-700">
             <Timer className="w-5 h-5 text-zinc-500" />
             <input
               type="time"
-              name="horas"
-              id="horas"
+              name="timeEvent"
+              id="timeEvent"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="timeStart"
               required

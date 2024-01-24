@@ -16,10 +16,22 @@ interface UserProps {
 }
 
 interface User {
-  id: number
+  idUser: number
   name: string
   email: string
   cpf: string
+}
+
+async function putUser(body: object) {
+  const response = await fetch('http://localhost:3000/api/user/update', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+  if (response.ok) console.log('sucess')
+  else console.error('Erro')
 }
 
 export default function UpdateUser({ params }: UserProps) {
@@ -65,10 +77,7 @@ export default function UpdateUser({ params }: UserProps) {
     const data = Object.fromEntries(formData)
     if (data.password === data.password_confirmation) {
       setError(validatePassword(data.password))
-      await fetch(`http://localhost:3000/api/user/update`, {
-        method: 'PUT',
-        body: JSON.stringify(data),
-      })
+      await putUser(data)
       return ''
     }
     setError('Senhas não correspondem')
@@ -102,7 +111,7 @@ export default function UpdateUser({ params }: UserProps) {
             />
           </div>
         </div>
-        <input type="hidden" name="id" className="hidden" value={data.id} />
+        <input type="hidden" name="id" className="hidden" value={data.idUser} />
         <div className="mt-5">
           <label htmlFor="">E-mail</label>
           <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">
