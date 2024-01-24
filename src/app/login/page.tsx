@@ -4,15 +4,19 @@ import Link from 'next/link'
 import { FormEvent } from 'react'
 
 async function postLogin(body: object) {
-  const response = await fetch('http://localhost:3000/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
-  if (response.ok) console.log('sucess')
-  else console.error('Erro')
+  try {
+    const response = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+    if (response.ok) window.location.replace('/configuration')
+    else return 'error'
+  } catch (error) {
+    return 'error'
+  }
 }
 
 export default function LogIn() {

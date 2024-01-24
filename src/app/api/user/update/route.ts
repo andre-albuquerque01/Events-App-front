@@ -1,4 +1,25 @@
 import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
+
+export async function GET() {
+  const cookiesStore = cookies()
+  const token = cookiesStore.get('token')
+  const id = cookiesStore.get('id')
+  const xsrf = cookiesStore.get('XSRF-TOKEN')
+
+  const response = await fetch(`http://localhost/api/user/${id}`, {
+    cache: 'no-store',
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-XSRF-TOKEN': xsrf?.value,
+    },
+    Authorization: `Bearer ${token}`,
+  })
+  const data = await response.json()
+
+  return NextResponse.json({ data })
+}
 
 export async function POST(request: Request) {
   try {
@@ -11,15 +32,15 @@ export async function POST(request: Request) {
     const xsrf = cookiesStore.get('XSRF-TOKEN')
 
     const response = await fetch(
-      `http://localhost/api/user/${requestBody.idUser}`,
+      `http://localhost/api/events/${requestBody.idUser}`,
       {
-        method: 'PUT',
+        method: 'POST',
         Accept: 'application/json',
         headers: {
           'Content-Type': 'application/json',
           'X-XSRF-TOKEN': xsrf?.value,
-          Authorization: `Bearer ${token}`,
         },
+        Authorization: `Bearer ${token}`,
         body: JSON.stringify(requestBody),
       },
     )

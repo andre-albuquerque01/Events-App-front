@@ -9,12 +9,6 @@ import {
 import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 
-interface UserProps {
-  params: {
-    id: number
-  }
-}
-
 interface User {
   idUser: number
   name: string
@@ -34,8 +28,8 @@ async function putUser(body: object) {
   else console.error('Erro')
 }
 
-export default function UpdateUser({ params }: UserProps) {
-  const [data, setData] = useState<User[]>([])
+export default function UpdateUser() {
+  const [data, setData] = useState<User | null>(null)
   const [error, setError] = useState('')
 
   const hasNumber = /\d/
@@ -58,17 +52,19 @@ export default function UpdateUser({ params }: UserProps) {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3000/api/user/update/${params.id}`,
+        `http://localhost:3000/api/user/update/get`,
         {
           cache: 'no-store',
         },
       )
+      console.log(response)
+
       const reqJson = await response.json()
       setData(reqJson.data.data)
     }
 
     fetchData()
-  }, [params.id])
+  }, [])
 
   async function handleForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -106,12 +102,11 @@ export default function UpdateUser({ params }: UserProps) {
               name="name"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Nome"
-              value={data.name}
+              value={data?.name}
               required
             />
           </div>
         </div>
-        <input type="hidden" name="id" className="hidden" value={data.idUser} />
         <div className="mt-5">
           <label htmlFor="">E-mail</label>
           <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">
@@ -121,7 +116,7 @@ export default function UpdateUser({ params }: UserProps) {
               name="email"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="E-mail"
-              value={data.email}
+              value={data?.email}
               required
             />
           </div>
@@ -137,7 +132,7 @@ export default function UpdateUser({ params }: UserProps) {
               placeholder="CPF"
               min="11"
               max="11"
-              value={data.cpf}
+              value={data?.cpf}
               required
             />
           </div>

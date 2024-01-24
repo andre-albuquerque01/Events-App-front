@@ -19,8 +19,18 @@ export async function POST(request: Request) {
     })
 
     const data = await response.json()
-    cookiesStore.set('token', data.data.token)
-    cookiesStore.set('id', data.data.idUser)
+    cookiesStore.set('token', data.data.token, {
+      expires: Date.now() + 2 * 60 * 60 * 1000,
+      secure: true,
+    })
+    cookiesStore.set('id', data.data.idUser, {
+      expires: Date.now() + 2 * 60 * 60 * 1000,
+      secure: true,
+    })
+    cookiesStore.set('r', data.data.r, {
+      expires: Date.now() + 2 * 60 * 60 * 1000,
+      secure: true,
+    })
     return Response.json({ data })
   } catch (error) {
     console.log('Erro ao analisar JSON:', error)
