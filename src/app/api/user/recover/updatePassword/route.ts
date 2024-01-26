@@ -11,7 +11,7 @@ export async function PUT(request: Request) {
     const tokenRecover = cookiesStore.get('tokenRecover')
 
     const response = await fetch(
-      `http://localhost/api/user/updatePassword/${tokenRecover?.value}`,
+      `http://localhost/api/updatePassword/${tokenRecover?.value}`,
       {
         method: 'PUT',
         Accept: 'application/json',
@@ -24,7 +24,7 @@ export async function PUT(request: Request) {
     )
     cookiesStore.delete('tokenRecover')
     const data = await response.json()
-    console.log(data.error)
+    console.log(data)
 
     return Response.json({ data })
   } catch (error) {

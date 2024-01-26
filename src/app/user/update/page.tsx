@@ -24,7 +24,7 @@ async function putUser(body: object) {
     },
     body: JSON.stringify(body),
   })
-  if (response.ok) console.log('sucess')
+  if (response.ok) alert('Alteração feita com sucesso!')
   else console.error('Erro')
 }
 

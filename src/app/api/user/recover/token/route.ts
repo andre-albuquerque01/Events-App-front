@@ -20,7 +20,15 @@ export async function POST(request: Request) {
     })
 
     const data = await response.json()
-    cookiesStore.set('tokenRecover', data.token)
+
+    if (data.token === undefined) {
+      return new Response(JSON.stringify({ error: 'Error', status: 400 }), {
+        status: 400,
+      })
+    }
+    cookiesStore.set('tokenRecover', data.token, {
+      expires: Date.now() + 10 * 60 * 1000,
+    })
     return Response.json({ data })
   } catch (error) {
     console.error(error)

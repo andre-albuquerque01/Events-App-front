@@ -13,7 +13,7 @@ async function verifyEmail(body: object) {
       },
     )
 
-    if (response.ok) window.location.replace('user/recover/verifyToken')
+    if (response.ok) window.location.replace('/user/recover/verifyToken')
     else alert('E-mail não cadastrado sistema')
   } catch (error) {
     console.error(error)
