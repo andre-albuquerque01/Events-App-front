@@ -3,9 +3,9 @@ import { ArrowLeft, CircleUserRound, LockKeyhole } from 'lucide-react'
 import Link from 'next/link'
 import { FormEvent } from 'react'
 
-async function postLogin(body: object) {
-  const response = await fetch('http://localhost:3000/api/login', {
-    method: 'POST',
+async function updatePassword(body: object) {
+  await fetch(`http://localhost:3000/api/user/update/updatePassword`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -13,13 +13,13 @@ async function postLogin(body: object) {
   })
 }
 
-export default function LogIn() {
+export default function UpdatePassword() {
   async function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData)
-    await postLogin(data)
+    await updatePassword(data)
   }
 
   return (

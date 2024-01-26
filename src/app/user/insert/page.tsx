@@ -11,13 +11,14 @@ import { FormEvent, useState } from 'react'
 
 async function postUser(body: object) {
   try {
-    await fetch('http://localhost:3000/api/user/insert', {
+    const response = await fetch('http://localhost:3000/api/user/insert', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     })
+    if (response.ok) window.location.replace('login')
   } catch (error) {
     console.error('Error')
   }
@@ -64,7 +65,7 @@ export default function InsertUser() {
         className="bg-zinc-700 flex flex-col items-center justify-center w-[420px] h-[680px] rounded-xl max-sm:w-[360px] relative"
       >
         <Link
-          href="/"
+          href="/login"
           className="absolute top-0 left-0 mt-4 ml-4 flex flex-row justify-start items-start"
         >
           <ArrowLeft /> Voltar

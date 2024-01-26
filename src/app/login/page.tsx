@@ -64,7 +64,7 @@ export default function LogIn() {
               />
             </div>
           </div>
-          <Link href="/user/recover" className="text-sm">
+          <Link href="/user/recover/sendEmail" className="text-sm">
             Esqueceu senha?
           </Link>
           <button className="mt-8 flex h-12 w-[320px] items-center justify-center rounded-full bg-emerald-600 font-semibold text-white">
