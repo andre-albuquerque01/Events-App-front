@@ -19,8 +19,8 @@ export default function header() {
         </div>
 
         <div className="flex items-center gap-4">
-          <CartWidget />
-          <div className="w-px h-4 bg-zinc-500"></div>
+          {/* <CartWidget />
+          <div className="w-px h-4 bg-zinc-500"></div> */}
           {hasCookie ? (
             <Link
               href="/configuration"
