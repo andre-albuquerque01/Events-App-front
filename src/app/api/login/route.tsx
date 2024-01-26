@@ -27,10 +27,12 @@ export async function POST(request: Request) {
       expires: Date.now() + 2 * 60 * 60 * 1000,
       secure: true,
     })
-    cookiesStore.set('r', data.data.r, {
-      expires: Date.now() + 2 * 60 * 60 * 1000,
-      secure: true,
-    })
+    if (data.data.r === 'JesusIsKingADM') {
+      cookiesStore.set('r', data.data.r, {
+        expires: Date.now() + 2 * 60 * 60 * 1000,
+        secure: true,
+      })
+    }
     return Response.json({ data })
   } catch (error) {
     console.log('Erro ao analisar JSON:', error)

@@ -8,7 +8,6 @@ export async function POST(request: Request) {
 
     const cookiesStore = cookies()
     const xsrf = cookiesStore.get('XSRF-TOKEN')
-    console.log(xsrf?.value)
 
     const response = await fetch(
       'http://localhost/api/sendTokenRecoverPassword',
@@ -24,6 +23,11 @@ export async function POST(request: Request) {
     )
 
     const data = await response.json()
+    if (data.error !== undefined) {
+      return new Response(JSON.stringify({ error: 'Error', status: 400 }), {
+        status: 400,
+      })
+    }
 
     return Response.json({ data })
   } catch (error) {

@@ -17,7 +17,7 @@ interface User {
 }
 
 async function putUser(body: object) {
-  const response = await fetch('http://localhost:3000/api/user/update', {
+  const response = await fetch('http://localhost:3000/api/user/update/edit', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ async function putUser(body: object) {
     body: JSON.stringify(body),
   })
   if (response.ok) alert('Alteração feita com sucesso!')
-  else console.error('Erro')
+  else alert('E-mail o CPF já estão sendo utilizados')
 }
 
 export default function UpdateUser() {
@@ -106,6 +106,7 @@ export default function UpdateUser() {
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="CPF"
               defaultValue={data?.cpf ?? ''}
+              readOnly
               required
             />
           </div>

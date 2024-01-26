@@ -1,25 +1,4 @@
 import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
-
-// export async function GET() {
-//   const cookiesStore = cookies()
-//   const token = cookiesStore.get('token')
-//   const id = cookiesStore.get('id')
-//   const xsrf = cookiesStore.get('XSRF-TOKEN')
-
-//   const response = await fetch(`http://localhost/api/user/${id}`, {
-//     cache: 'no-store',
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'X-XSRF-TOKEN': xsrf?.value,
-//     },
-//     Authorization: `Bearer ${token}`,
-//   })
-//   const data = await response.json()
-
-//   return NextResponse.json({ data })
-// }
 
 export async function PUT(request: Request) {
   try {
@@ -44,7 +23,11 @@ export async function PUT(request: Request) {
     })
 
     const data = await response.json()
-    console.log(data.error)
+    if (data.error !== undefined) {
+      return new Response(JSON.stringify({ error: 'Error', status: 400 }), {
+        status: 400,
+      })
+    }
 
     return Response.json({ data })
   } catch (error) {
