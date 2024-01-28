@@ -14,14 +14,14 @@ import {
 import Link from 'next/link'
 import { FormEvent } from 'react'
 
-async function postEvents(body: unknown) {
-  console.log(body)
+async function postEvents(body: object) {
   const response = await fetch('http://localhost:3000/api/events/insert', {
     method: 'POST',
     headers: {
-      'Custom-Header': 'value',
+      'Content-Type': 'multipart/form-data',
+      // 'Content-Type': 'application/json',
     },
-    body,
+    body: JSON.stringify(body),
   })
   if (response.ok) console.log('sucess')
   else console.error('Erro')
@@ -59,7 +59,7 @@ export default function InsertEvents() {
               name="title"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Título"
-              // required
+              required
             />
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function InsertEvents() {
               name="price"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Preço"
-              // required
+              required
             />
           </div>
         </div>
@@ -88,7 +88,7 @@ export default function InsertEvents() {
               name="qtdParcelamento"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Quantidade de parcelas"
-              // required
+              required
             />
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function InsertEvents() {
               id="department"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Departamento"
-              // required
+              required
             />
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function InsertEvents() {
               id="occupation"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Ocupação"
-              // required
+              required
             />
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function InsertEvents() {
               id="dateEvent"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Dia do evento"
-              // required
+              required
             />
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function InsertEvents() {
               id="timeEvent"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="timeStart"
-              // required
+              required
             />
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function InsertEvents() {
               id="pathName"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Image do evento"
-              // required
+              required
             />
           </div>
         </div>
