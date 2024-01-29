@@ -8,7 +8,7 @@ export default function Configuration() {
   const hasCookie = cookiesList.get('r')
   return (
     <div className="flex flex-col gap-5 mt-5">
-      <Link href="/user/update" className="flex items-center gap-2">
+      <Link href="/user/update" className="flex items-center gap-2 w-36">
         <SquarePen className="h-5 w-5" />
         <span className="text-md">Editar o perfil</span>
       </Link>
