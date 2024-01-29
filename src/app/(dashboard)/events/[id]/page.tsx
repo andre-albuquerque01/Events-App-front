@@ -11,9 +11,10 @@ interface EventsProps {
 
 async function getEvent(id: number): Promise<Events> {
   const response = await fetch(`http://localhost/api/events/${id}`, {
-    next: {
-      revalidate: 60,
-    },
+    cache: 'no-cache',
+    // next: {
+    //   revalidate: 60,
+    // },
   })
   const reqJson = await response.json()
   return reqJson.data
@@ -28,6 +29,17 @@ export async function generateMetadata({
   }
 }
 
+const updateDate = (updateAt: string) => {
+  const dateUpdate = new Date(Date.parse(updateAt))
+  const formattedDate = dateUpdate
+    .toISOString()
+    .split('T')[0]
+    .split('-')
+    .reverse()
+    .join('/')
+  return formattedDate
+}
+
 export default async function EventList({ params }: EventsProps) {
   const data = await getEvent(params.id)
 
@@ -35,7 +47,7 @@ export default async function EventList({ params }: EventsProps) {
     <div className="relative grid max-h-[856px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
         <Image
-          src=""
+          src={data?.pathName}
           alt="Image do evento"
           width={1000}
           height={1000}
@@ -54,7 +66,7 @@ export default async function EventList({ params }: EventsProps) {
         <div className="mt-2">
           <span className="text-md text-zinc-400">Data do evento: </span>
           <span className="text-sm text-zinc-400">
-            {data.dateEvent} às {data.timeEvent} horas
+            {updateDate(data.dateEvent)} às {data.timeEvent} horas
           </span>
         </div>
         <div className="mt-2">

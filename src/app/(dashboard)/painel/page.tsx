@@ -16,22 +16,22 @@ export default async function Painel() {
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="font-sm">Produtos listados</p>
-      <div className="flex flex-row flex-wrap gap-6">
+      <p className="font-sm">Eventos listados</p>
+      <div className="flex flex-row justify-center flex-wrap gap-6">
         {events &&
           events.length > 0 &&
           events.map((eventos, key) => (
             <>
               <Link
                 href={`/events/${eventos.id}`}
-                className="group relative rounded-lg w-[400px] h-[400px] bg-zinc-800 overflow-hidden flex justify-center items-end"
+                className="group relative rounded-lg w-[350px] h-[350px] bg-zinc-800 overflow-hidden flex justify-center items-end"
                 key={key}
               >
                 <Image
-                  src="/moletomGreen.png"
-                  className="group-hover:scale-105 transition-transform duration-500"
-                  width={480}
-                  height={480}
+                  src={eventos.pathName}
+                  className="group-hover:scale-110 transition-transform duration-500"
+                  width={350}
+                  height={350}
                   quality={100}
                   alt=""
                 />

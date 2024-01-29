@@ -6,7 +6,7 @@ async function postLogout() {
     const response = await fetch('http://localhost:3000/api/user/logout', {
       method: 'POST',
     })
-    if (response.ok) console.log('sucess')
+    if (response.ok) window.location.replace('/')
     else console.error('Error')
   } catch (error) {
     console.error('Error')

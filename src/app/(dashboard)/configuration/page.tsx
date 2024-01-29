@@ -1,5 +1,5 @@
-import Logout from '@/app/user/logout/page'
-import { FolderInput, SquarePen } from 'lucide-react'
+import Logout from '@/components/logout'
+import { FolderInput, PanelLeftIcon, SquarePen } from 'lucide-react'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 
@@ -13,10 +13,16 @@ export default function Configuration() {
         <span className="text-md">Editar o perfil</span>
       </Link>
       {hasCookie && hasCookie?.value === 'JesusIsKingADM' && (
-        <Link href="/events/insert" className="flex items-center gap-2">
-          <FolderInput className="h-5 w-5" />
-          <span className="text-md">Cadastro evento</span>
-        </Link>
+        <>
+          <Link href="/events/insert" className="flex items-center gap-2">
+            <FolderInput className="h-5 w-5" />
+            <span className="text-md">Cadastro evento</span>
+          </Link>
+          <Link href="/painel" className="flex items-center gap-2">
+            <PanelLeftIcon className="h-5 w-5" />
+            <span className="text-md">Painel</span>
+          </Link>
+        </>
       )}
       <Logout />
     </div>

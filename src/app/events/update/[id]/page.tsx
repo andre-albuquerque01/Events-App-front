@@ -18,7 +18,7 @@ import { FormEvent, useEffect, useState } from 'react'
 
 async function putEvents(id: number, body: object) {
   const response = await fetch(
-    `http://localhost:3000/api/events/update/${id}`,
+    `http://localhost:3000/api/events/update/edit/${id}`,
     {
       method: 'POST',
       headers: {
@@ -37,10 +37,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/events/update/${params.id}`,
-        {
-          cache: 'no-store',
-        },
+        `http://localhost:3000/api/events/update/get/${params.id}`,
       )
       const reqJson = await response.json()
       setData(reqJson.data.data)
