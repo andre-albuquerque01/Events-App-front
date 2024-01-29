@@ -18,8 +18,8 @@ async function postEvents(body: object) {
   const response = await fetch('http://localhost:3000/api/events/insert', {
     method: 'POST',
     headers: {
+      Accept: 'application/json, application/xml, text/plain, text/html, *.*',
       'Content-Type': 'multipart/form-data',
-      // 'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   })

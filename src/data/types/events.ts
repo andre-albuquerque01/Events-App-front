@@ -1,5 +1,6 @@
 export interface Events {
   idEvents: number
+  id: number
   title: string
   description: string
   price: number
