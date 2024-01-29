@@ -39,7 +39,7 @@ export default async function Search({ searchParams }: SearchProps) {
           events.length > 0 &&
           events.map((eventos) => (
             <Link
-              href={`/events/`}
+              href={`/events/${eventos.idEvents}`}
               className="group relative rounded-lg w-[400px] h-[400px] bg-zinc-800 overflow-hidden flex justify-center items-end"
               key={eventos?.id}
             >

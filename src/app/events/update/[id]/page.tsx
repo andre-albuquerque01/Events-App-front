@@ -43,7 +43,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
         },
       )
       const reqJson = await response.json()
-      setData(reqJson)
+      setData(reqJson.data.data)
     }
     fetchData()
   }, [params.id])
@@ -56,13 +56,13 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-full">
       <form
         onSubmit={handlePost}
-        className="bg-zinc-700 flex flex-col items-center justify-center w-[420px] min-h-[950px] rounded-xl max-sm:w-[360px] relative"
+        className="bg-zinc-700 mt-10 mb-10 flex flex-col items-center justify-center w-[420px] min-h-[1105px] rounded-xl max-sm:w-[360px] relative"
       >
         <Link
-          href="/configuration"
+          href="/painel"
           className="absolute top-0 left-0 mt-4 ml-4 flex flex-row justify-start items-start"
         >
           <ArrowLeft /> Voltar
@@ -107,7 +107,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
               type="number"
               name="qtdParcelamento"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
-              placeholder="Preço"
+              placeholder="Quantidade de parcelas"
               defaultValue={data?.qtdParcelamento ?? ''}
               required
             />
@@ -151,7 +151,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
               id="statusEvent"
               name="statusEvent"
               defaultValue={data?.statusEvent ? '1' : '0'}
-              className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
+              className="flex-1 bg-zinc-800 text-sm outline-none placeholder:text-zinc-500"
               required
             >
               <option defaultValue={0}>Selecione o status</option>

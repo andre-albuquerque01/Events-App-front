@@ -24,7 +24,7 @@ export default async function Home() {
   return (
     <div className="grid max-h-[856px] grid-cols-9 grid-rows-6 gap-6">
       <Link
-        href={`/events/${highlightedEvents.id}`}
+        href={`/events/${highlightedEvents?.id}`}
         className="group relative col-span-6 row-span-6 rounded-lg bg-zinc-800 overflow-hidden flex justify-center"
       >
         <Image
@@ -36,9 +36,9 @@ export default async function Home() {
           alt=""
         />
         <div className="absolute bottom-28 right-28 h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
-          <span className="text-sm truncate">{highlightedEvents.title}</span>
+          <span className="text-sm truncate">{highlightedEvents?.title}</span>
           <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
-            {highlightedEvents.price.toLocaleString('pt-BR', {
+            {highlightedEvents?.price.toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',
               minimumFractionDigits: 0,
