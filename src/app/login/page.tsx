@@ -13,7 +13,7 @@ async function postLogin(body: object) {
       body: JSON.stringify(body),
     })
     if (response.ok) window.location.replace('/configuration')
-    else return 'error'
+    else alert('E-mail ou senha inválida')
   } catch (error) {
     return 'error'
   }

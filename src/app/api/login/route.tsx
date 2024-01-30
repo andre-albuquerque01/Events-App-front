@@ -33,6 +33,13 @@ export async function POST(request: Request) {
         secure: true,
       })
     }
+
+    if (data.error !== undefined) {
+      return new Response(JSON.stringify({ error: 'Error', status: 400 }), {
+        status: 400,
+      })
+    }
+
     return Response.json({ data })
   } catch (error) {
     console.log('Erro ao analisar JSON:', error)
