@@ -63,7 +63,7 @@ export default async function Painel({ searchParams }: PropsSearchParams) {
                     quality={100}
                     alt=""
                   />
-                  <div className="absolute top-1 right-10 h-12 flex items-center max-w-[100px] rounded-full border-2 border-zinc-500 bg-black/60 p-1">
+                  <div className="absolute top-1 right-10 h-12 flex items-center max-w-[100px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 z-40">
                     <ButtonPainel idEvents={eventos.id} />
                   </div>
                   <div className="absolute bottom-10 right-5 h-12 flex items-center gap-2 max-w-[240px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
