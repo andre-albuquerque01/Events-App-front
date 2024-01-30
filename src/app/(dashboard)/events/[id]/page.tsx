@@ -2,22 +2,12 @@ import AddToCartButton from '@/components/add-to-cart-button'
 import { Events } from '@/data/types/events'
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 interface EventsProps {
   params: {
     id: number
   }
-}
-
-async function getEvent(id: number): Promise<Events> {
-  const response = await fetch(`http://localhost/api/events/${id}`, {
-    cache: 'no-cache',
-    // next: {
-    //   revalidate: 60,
-    // },
-  })
-  const reqJson = await response.json()
-  return reqJson.data
 }
 
 export async function generateMetadata({
@@ -29,19 +19,31 @@ export async function generateMetadata({
   }
 }
 
-const updateDate = (updateAt: string) => {
-  const dateUpdate = new Date(Date.parse(updateAt))
-  const formattedDate = dateUpdate
-    .toISOString()
-    .split('T')[0]
-    .split('-')
-    .reverse()
-    .join('/')
-  return formattedDate
+async function getEvent(id: number): Promise<Events> {
+  try {
+    const response = await fetch(`http://localhost/api/events/${id}`, {
+      cache: 'no-cache',
+    })
+    const reqJson = await response.json()
+    return reqJson.data
+  } catch (error) {
+    redirect('/')
+  }
 }
 
 export default async function EventList({ params }: EventsProps) {
   const data = await getEvent(params.id)
+
+  const updateDate = (updateAt: string) => {
+    const dateUpdate = new Date(Date.parse(updateAt))
+    const formattedDate = dateUpdate
+      .toISOString()
+      .split('T')[0]
+      .split('-')
+      .reverse()
+      .join('/')
+    return formattedDate
+  }
 
   return (
     <div className="relative grid max-h-[806px] grid-cols-3">

@@ -6,8 +6,10 @@ interface typeProps {
   idEvents: number
 }
 
-async function deleteEvents(idEvents: number) {
-  await fetch(`http://localhost:3000/api/events/delete/${idEvents}`)
+async function deleteEvents(id: number) {
+  await fetch(`http://localhost:3000/api/events/delete/${id}`, {
+    method: 'DELETE',
+  })
 }
 
 export default function ButtonPainel({ idEvents }: typeProps) {
@@ -15,7 +17,10 @@ export default function ButtonPainel({ idEvents }: typeProps) {
     window.location.href = `/events/update/${idEvents}`
   }
   const handleDelete = async () => {
-    if (confirm('Tem certeza que quer excluir?')) await deleteEvents(idEvents)
+    if (confirm('Tem certeza que quer excluir?')) {
+      await deleteEvents(idEvents)
+      window.location.replace(`/painel`)
+    }
   }
 
   return (

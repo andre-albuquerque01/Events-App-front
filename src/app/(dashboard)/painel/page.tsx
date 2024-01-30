@@ -1,9 +1,13 @@
 import ButtonPainel from '@/components/button-painel'
 import LinkPaginationPainel from '@/components/linkPaginationPainel'
 import { Events } from '@/data/types/events'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata: Metadata = {
+  title: 'Dashboard',
+}
 interface PropsSearchParams {
   searchParams: {
     page: number
