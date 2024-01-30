@@ -17,7 +17,6 @@ interface PropsSearchParams {
 interface FeaturedEventsResponse {
   data: Events[]
   countPage: number
-  page: number
 }
 
 async function getFeaturedEvents(
