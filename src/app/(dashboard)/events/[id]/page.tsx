@@ -44,13 +44,13 @@ export default async function EventList({ params }: EventsProps) {
   const data = await getEvent(params.id)
 
   return (
-    <div className="relative grid max-h-[856px] grid-cols-3">
+    <div className="relative grid max-h-[806px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
         <Image
           src={data?.pathName}
           alt="Image do evento"
-          width={1000}
-          height={1000}
+          width={810}
+          height={810}
           quality={100}
         />
       </div>

@@ -55,12 +55,12 @@ export default async function Home({ searchParams }: PropsSearchParams) {
             return (
               <Link
                 href={`/events/${event.id}`}
-                className="group relative rounded-lg bg-zinc-800 flex justify-center "
+                className="group relative rounded-lg w-[280px] h-[280px] bg-zinc-800 overflow-hidden flex justify-center"
                 key={event.id}
               >
                 <Image
                   src={event.pathName}
-                  className="group-hover:scale-105 max-w-[280px] min-w-[280px] h-[269px] overflow-hidden rounded-xl transition-transform duration-500"
+                  className="group-hover:scale-110 transition-transform duration-500 rounded-xl"
                   width={280}
                   height={280}
                   quality={80}
