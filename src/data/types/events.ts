@@ -6,7 +6,7 @@ export interface Events {
   price: number
   department: string
   occupation: string
-  statusEvent: boolean
+  statusEvent: number
   idFile: number
   dateEvent: string
   timeEvent: string
