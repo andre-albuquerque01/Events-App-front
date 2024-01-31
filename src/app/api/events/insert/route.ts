@@ -5,13 +5,16 @@ export async function POST(request: Request) {
     const requestBody = await request.json()
 
     await fetch('http://localhost/sanctum/csrf-cookie')
+
     const cookiesStore = cookies()
     const token = cookiesStore.get('token')
     const xsrf = cookiesStore.get('XSRF-TOKEN')
 
-    const response = await fetch('http://localhost/api/events', {
+    const response = await fetch(`http://localhost/api/events`, {
       method: 'POST',
+      Accept: 'application/json',
       headers: {
+        'Content-Type': 'application/json',
         'X-XSRF-TOKEN': xsrf?.value,
         Authorization: `Bearer ${token?.value}`,
       },
@@ -19,7 +22,11 @@ export async function POST(request: Request) {
     })
 
     const data = await response.json()
-    console.log(data.error)
+    if (data.error !== undefined) {
+      return new Response(JSON.stringify({ error: 'Error', status: 400 }), {
+        status: 400,
+      })
+    }
 
     return Response.json({ data })
   } catch (error) {

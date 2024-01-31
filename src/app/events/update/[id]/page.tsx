@@ -27,8 +27,13 @@ async function putEvents(id: number, body: object) {
       body: JSON.stringify(body),
     },
   )
-  if (response.ok) console.log('sucess')
-  else console.error('Erro')
+  if (response.ok) {
+    alert('Sucesso')
+    window.location.replace('/configuration')
+  } else
+    alert(
+      'Houve erro ao cadastrar o evento, se o error persistir, contact um administrador.',
+    )
 }
 
 export default function UpdateEvents({ params }: { params: { id: number } }) {

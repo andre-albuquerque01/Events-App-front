@@ -19,12 +19,18 @@ export async function POST(
       headers: {
         'Content-Type': 'application/json',
         'X-XSRF-TOKEN': xsrf?.value,
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token?.value}`,
       },
       body: JSON.stringify(requestBody),
     })
 
     const data = await response.json()
+
+    if (data.error !== undefined) {
+      return new Response(JSON.stringify({ error: 'Error', status: 400 }), {
+        status: 400,
+      })
+    }
 
     return Response.json({ data })
   } catch (error) {

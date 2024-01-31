@@ -18,13 +18,17 @@ async function postEvents(body: object) {
   const response = await fetch('http://localhost:3000/api/events/insert', {
     method: 'POST',
     headers: {
-      Accept: 'application/json, application/xml, text/plain, text/html, *.*',
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   })
-  if (response.ok) console.log('sucess')
-  else console.error('Erro')
+  if (response.ok) {
+    alert('Sucesso')
+    window.location.replace('/configuration')
+  } else
+    alert(
+      'Houve erro ao cadastrar o evento, se o error persistir, contact um administrador.',
+    )
 }
 
 export default function InsertEvents() {
@@ -153,7 +157,7 @@ export default function InsertEvents() {
           <div className="flex w-[320px] items-center gap-3 rounded-full bg-zinc-800 px-5 py-3 ring-zinc-700">
             <File className="w-5 h-5 text-zinc-500" />
             <input
-              type="file"
+              type="text"
               name="pathName"
               id="pathName"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
