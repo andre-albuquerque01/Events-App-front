@@ -5,7 +5,9 @@ import { ReactNode } from 'react'
 export default function Dashboard({ children }: { children: ReactNode }) {
   const cookiesList = cookies()
   const hasCookie = cookiesList.has('token')
-  if (!hasCookie) redirect('/login')
+  const hasCookieRole = cookiesList.get('r')
+  if (!hasCookie || hasCookieRole?.value !== 'JesusIsKingADM')
+    redirect('/login')
 
   return <div>{children}</div>
 }

@@ -23,7 +23,7 @@ async function postEvents(body: object) {
     body: JSON.stringify(body),
   })
   if (response.ok) {
-    alert('Sucesso')
+    alert('Evento inserido com sucesso')
     window.location.replace('/configuration')
   } else
     alert(
