@@ -16,7 +16,7 @@ async function postHasEvent(body: object) {
       body: JSON.stringify(body),
     })
     const resp1 = await response.json()
-    alert(resp1)
+    alert(resp1.data.message)
   } catch (error) {
     console.error(error)
   }
