@@ -95,6 +95,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Preço"
               defaultValue={data?.price ?? ''}
+              max="999999"
               required
             />
           </div>
@@ -111,6 +112,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Quantidade de parcelas"
               defaultValue={data?.qtdParcelamento ?? ''}
+              max="99"
               required
             />
           </div>
@@ -141,6 +143,7 @@ export default function UpdateEvents({ params }: { params: { id: number } }) {
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Ocupação"
               defaultValue={data?.occupation ?? ''}
+              max="9999"
               required
             />
           </div>

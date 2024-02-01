@@ -77,6 +77,7 @@ export default function InsertEvents() {
               name="price"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Preço"
+              max="999999"
               required
             />
           </div>
@@ -92,6 +93,7 @@ export default function InsertEvents() {
               name="qtdParcelamento"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Quantidade de parcelas"
+              max="99"
               required
             />
           </div>
@@ -120,6 +122,7 @@ export default function InsertEvents() {
               id="occupation"
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
               placeholder="Ocupação"
+              max="9999"
               required
             />
           </div>
