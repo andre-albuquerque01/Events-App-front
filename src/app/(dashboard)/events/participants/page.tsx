@@ -1,4 +1,4 @@
-import ButtonPainel from '@/components/button-painel'
+import ButtonPainelDeleteHasEvent from '@/components/button-delete-hasEvent'
 import LinkPaginationPainel from '@/components/linkPaginationPainel'
 import { Events } from '@/data/types/events'
 import { Metadata } from 'next'
@@ -79,8 +79,10 @@ export default async function HasEventUser({
                     quality={100}
                     alt=""
                   />
-                  <div className="absolute top-1 right-10 h-12 flex items-center max-w-[100px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 z-40">
-                    <ButtonPainel idEvents={eventos.id} />
+                  <div className="absolute top-1 right-5 h-12 flex items-center max-w-[50px] rounded-xl border-2 border-zinc-500 bg-black/60 p-1">
+                    <ButtonPainelDeleteHasEvent
+                      idHasEvents={eventos.idHasEvents}
+                    />
                   </div>
                   <div className="absolute bottom-10 right-5 h-12 flex items-center gap-2 max-w-[240px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
                     <span className="text-sm truncate">{eventos.title}</span>

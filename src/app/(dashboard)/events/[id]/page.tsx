@@ -1,7 +1,9 @@
 import AddToCartButton from '@/components/add-to-cart-button'
 import { Events } from '@/data/types/events'
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import Image from 'next/image'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 interface EventsProps {
@@ -44,6 +46,9 @@ export default async function EventList({ params }: EventsProps) {
       .join('/')
     return formattedDate
   }
+
+  const cookiesList = cookies()
+  const hasCookie = cookiesList.has('token')
 
   return (
     <div className="relative grid max-h-[806px] grid-cols-3">
@@ -94,8 +99,17 @@ export default async function EventList({ params }: EventsProps) {
             })}
           </span>
         </div>
-
-        <AddToCartButton eventId={data.id} />
+        {hasCookie ? (
+          <AddToCartButton eventId={data.id} />
+        ) : (
+          <Link
+            href="/login"
+            className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 bg-opacity-50 font-semibold text-white"
+            title="Necessário fazer login"
+          >
+            Participar do evento
+          </Link>
+        )}
       </div>
     </div>
   )
