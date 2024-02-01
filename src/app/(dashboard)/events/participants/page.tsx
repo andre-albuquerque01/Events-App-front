@@ -2,6 +2,7 @@ import ButtonPainel from '@/components/button-painel'
 import LinkPaginationPainel from '@/components/linkPaginationPainel'
 import { Events } from '@/data/types/events'
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,19 +20,27 @@ interface FeaturedEventsResponse {
   countPage: number
 }
 
-async function searchEvents(page: number): Promise<FeaturedEventsResponse> {
+async function searchEvents(
+  page: number,
+  token: unknown,
+): Promise<FeaturedEventsResponse> {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/events/hasEvent/${page}`,
+      `http://localhost/api/hasEvents?page=${page}`,
       {
         method: 'GET',
         cache: 'no-cache',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       },
     )
     const reqJson = await response.json()
 
-    const countPage = reqJson.data.meta.last_page
-    const events = reqJson.data.data
+    const events = reqJson.data
+    const countPage = reqJson.meta.last_page
 
     return { events, countPage }
   } catch (error) {
@@ -42,9 +51,11 @@ async function searchEvents(page: number): Promise<FeaturedEventsResponse> {
 export default async function HasEventUser({
   searchParams,
 }: PropsSearchParams) {
+  const cookiesStore = cookies()
+  const token = cookiesStore.get('token')
   let { page: query } = searchParams || 1
   if (query === undefined) query = 1
-  const { events, countPage } = await searchEvents(query)
+  const { events, countPage } = await searchEvents(query, token?.value)
 
   return (
     <>

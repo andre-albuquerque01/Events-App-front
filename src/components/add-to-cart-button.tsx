@@ -7,13 +7,19 @@ export interface AddToCartButtonProps {
 }
 
 async function postHasEvent(body: object) {
-  await api('/hasEvent/insert', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  })
+  try {
+    const response = await api('/events/hasEvent/insert', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+    const resp1 = await response.json()
+    alert(resp1)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export default function AddToCartButton({ eventId }: AddToCartButtonProps) {
