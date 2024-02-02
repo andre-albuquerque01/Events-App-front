@@ -13,4 +13,5 @@ export interface Events {
   qtdParcelamento: number
   pathName: string
   idHasEvents: number
+  name: string
 }

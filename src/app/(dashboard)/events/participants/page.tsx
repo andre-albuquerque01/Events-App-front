@@ -62,8 +62,7 @@ export default async function HasEventUser({
       <div className="flex flex-col gap-4">
         <p className="font-sm">Lista dos eventos participando</p>
         <div className="flex flex-row justify-center flex-wrap gap-6">
-          {events &&
-            events.length > 0 &&
+          {events && events.length > 0 ? (
             events.map((eventos, key) => (
               <>
                 <Link
@@ -97,7 +96,10 @@ export default async function HasEventUser({
                   </div>
                 </Link>
               </>
-            ))}
+            ))
+          ) : (
+            <p className="font-sm">Nenhum evento inserido</p>
+          )}
         </div>
       </div>
       <div className="flex justify-center mt-4 h-10">

@@ -46,8 +46,7 @@ export default async function Painel({ searchParams }: PropsSearchParams) {
       <div className="flex flex-col gap-4">
         <p className="font-sm">Eventos listados</p>
         <div className="flex flex-row justify-center flex-wrap gap-6">
-          {events &&
-            events.length > 0 &&
+          {events && events.length > 0 ? (
             events.map((eventos, key) => (
               <>
                 <Link
@@ -63,7 +62,7 @@ export default async function Painel({ searchParams }: PropsSearchParams) {
                     quality={100}
                     alt=""
                   />
-                  <div className="absolute top-1 right-10 h-12 flex items-center max-w-[100px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 z-40">
+                  <div className="absolute top-1 right-10 h-12 flex items-center max-w-[230px] w-[150px] justify-center rounded-full border-2 border-zinc-500 bg-black/60 p-1 z-40">
                     <ButtonPainel idEvents={eventos.id} />
                   </div>
                   <div className="absolute bottom-10 right-5 h-12 flex items-center gap-2 max-w-[240px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
@@ -79,7 +78,10 @@ export default async function Painel({ searchParams }: PropsSearchParams) {
                   </div>
                 </Link>
               </>
-            ))}
+            ))
+          ) : (
+            <p className="font-sm">Nenhum evento cadastrado</p>
+          )}
         </div>
       </div>
       <div className="flex justify-center mt-4 h-10">
