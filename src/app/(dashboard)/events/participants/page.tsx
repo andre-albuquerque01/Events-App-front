@@ -63,12 +63,12 @@ export default async function HasEventUser({
         <p className="font-sm">Lista dos eventos participando</p>
         <div className="flex flex-row justify-center flex-wrap gap-6">
           {events && events.length > 0 ? (
-            events.map((eventos, key) => (
+            events.map((eventos) => (
               <>
                 <Link
                   href={`/events/${eventos.id}`}
                   className="group relative rounded-lg w-[280px] h-[280px] bg-zinc-800 overflow-hidden flex justify-center items-end"
-                  key={key}
+                  key={eventos.idEvents}
                 >
                   <Image
                     src={eventos.pathName}

@@ -23,10 +23,10 @@ export async function POST(request: Request) {
 
     const data = await response.json()
 
-    if (data.error === 'Error, participando do mesmo evento') {
+    if (data.message === 'Error, participando do mesmo evento') {
       return Response.json('Já está participando desse evento')
     }
-    if (data.error !== undefined) {
+    if (data.message !== undefined) {
       console.error(
         new Response(JSON.stringify({ error: 'Error', status: 400 }), {
           status: 400,
