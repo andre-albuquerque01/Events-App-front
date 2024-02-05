@@ -98,7 +98,7 @@ export default async function HasEventUser({
               </>
             ))
           ) : (
-            <p className="font-sm">Nenhum evento inserido</p>
+            <p className="font-sm">Não está participando de nenhum evento.</p>
           )}
         </div>
       </div>
