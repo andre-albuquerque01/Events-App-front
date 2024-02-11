@@ -13,6 +13,7 @@ export async function POST(request: Request) {
       headers: {
         'Content-Type': 'application/json',
         'X-XSRF-TOKEN': xsrf?.value,
+        application: 'application/json',
       },
       body: JSON.stringify(requestBody),
     })
